@@ -4,7 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1bfe435d-520d-4f35-95ed-81428df463cc" name="Changes" comment="test(backend) add required feature coverage" />
+    <list default="true" id="1bfe435d-520d-4f35-95ed-81428df463cc" name="Changes" comment="feat(projects): add dashboard, team management, and invitations">
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/finance/BudgetReportPanel.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/finance/FinancePanels.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/finance/FinanceRecordDialog.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/finance/FinanceRecordsPanel.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/graphql/fragments/finance.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/graphql/mutations/finance.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/graphql/queries/finance.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/types/finance.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/utils/currency.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/validation/finance.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/ProjectDetailPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/ProjectDetailPage.tsx" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -13,21 +26,21 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "Tigran105"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Tigran105&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "git@github.com:Tigran105/project-finance-platform.git",
-    "accountId": "4b24007d-5822-4052-8aea-d2aa9cc7f896"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;git@github.com:Tigran105/project-finance-platform.git&quot;,
+    &quot;accountId&quot;: &quot;4b24007d-5822-4052-8aea-d2aa9cc7f896&quot;
   }
-}]]></component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 3
-}]]></component>
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 3
+}</component>
   <component name="ProjectId" id="3Ex9PfctunjPVmHl9ETG4aHCnwd" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -37,6 +50,7 @@
   "keyToString": {
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "feature/frontend",
     "last_opened_file_path": "C:/Users/tiksa/project-finance-platform",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -102,8 +116,25 @@
       <option name="presentableId" value="Default" />
       <updated>1781109331438</updated>
       <workItem from="1781109332563" duration="1094000" />
+      <workItem from="1781110967309" duration="2075000" />
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="feat(auth): implement JWT-based login and registration">
+      <option name="closed" value="true" />
+      <created>1781111473623</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1781111473624</updated>
+    </task>
+    <task id="LOCAL-00007" summary="feat(projects): add dashboard, team management, and invitations">
+      <option name="closed" value="true" />
+      <created>1781112189190</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1781112189190</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -115,7 +146,9 @@
     <MESSAGE value="feat(backend) add income management operations" />
     <MESSAGE value="feat(backend) add dynamic budget report" />
     <MESSAGE value="test(backend) add required feature coverage" />
-    <option name="LAST_COMMIT_MESSAGE" value="test(backend) add required feature coverage" />
+    <MESSAGE value="feat(auth): implement JWT-based login and registration" />
+    <MESSAGE value="feat(projects): add dashboard, team management, and invitations" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat(projects): add dashboard, team management, and invitations" />
   </component>
   <component name="github-copilot-workspace">
     <instructionFileLocations>

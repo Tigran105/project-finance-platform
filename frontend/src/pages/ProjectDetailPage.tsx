@@ -10,19 +10,27 @@ import Grid from "@mui/material/Grid";
 import Link from "@mui/material/Link";
 import Paper from "@mui/material/Paper";
 import Stack from "@mui/material/Stack";
+import Tab from "@mui/material/Tab";
+import Tabs from "@mui/material/Tabs";
 import Typography from "@mui/material/Typography";
+import { useState } from "react";
 import { Link as RouterLink, useParams } from "react-router-dom";
 
+import { useAuth } from "@/auth/AuthContext";
+import { BudgetReportPanel } from "@/components/finance/BudgetReportPanel";
+import { ExpensesPanel, IncomesPanel } from "@/components/finance/FinancePanels";
 import { InviteUserForm } from "@/components/invitations/InviteUserForm";
 import { AppLayout } from "@/components/layout/AppLayout";
 import { TeamMembersPanel } from "@/components/projects/TeamMembersPanel";
-import { useAuth } from "@/auth/AuthContext";
 import { PROJECT_QUERY } from "@/graphql/queries/projects";
 import type { Project } from "@/types/project";
+
+type ProjectTab = "team" | "expenses" | "incomes" | "budget";
 
 export function ProjectDetailPage() {
   const { projectId } = useParams<{ projectId: string }>();
   const { user } = useAuth();
+  const [activeTab, setActiveTab] = useState<ProjectTab>("team");
 
   const { data, loading, error } = useQuery<{ project: Project }>(PROJECT_QUERY, {
     variables: { id: projectId },
@@ -67,7 +75,7 @@ export function ProjectDetailPage() {
           </Alert>
         )}
 
-        {!loading && !error && project && (
+        {!loading && !error && project && user && (
           <>
             <Paper sx={{ p: 3 }}>
               <Typography variant="h4" gutterBottom>
@@ -82,23 +90,51 @@ export function ProjectDetailPage() {
               </Typography>
             </Paper>
 
-            <Grid container spacing={3}>
-              <Grid size={{ xs: 12, md: isOwner ? 6 : 12 }}>
-                <TeamMembersPanel project={project} />
-              </Grid>
-
-              {isOwner && (
-                <Grid size={{ xs: 12, md: 6 }}>
-                  <InviteUserForm projectId={project.id} />
-                </Grid>
-              )}
-            </Grid>
-
-            <Paper sx={{ p: 3 }}>
-              <Typography variant="body2" color="text.secondary">
-                Expense, income, and budget report tools will be available in the next step.
-              </Typography>
+            <Paper sx={{ px: { xs: 1, sm: 2 } }}>
+              <Tabs
+                value={activeTab}
+                onChange={(_event, value: ProjectTab) => setActiveTab(value)}
+                variant="scrollable"
+                scrollButtons="auto"
+              >
+                <Tab label="Team" value="team" />
+                <Tab label="Expenses" value="expenses" />
+                <Tab label="Incomes" value="incomes" />
+                <Tab label="Budget report" value="budget" />
+              </Tabs>
             </Paper>
+
+            {activeTab === "team" && (
+              <Grid container spacing={3}>
+                <Grid size={{ xs: 12, md: isOwner ? 6 : 12 }}>
+                  <TeamMembersPanel project={project} />
+                </Grid>
+
+                {isOwner && (
+                  <Grid size={{ xs: 12, md: 6 }}>
+                    <InviteUserForm projectId={project.id} />
+                  </Grid>
+                )}
+              </Grid>
+            )}
+
+            {activeTab === "expenses" && (
+              <ExpensesPanel
+                projectId={project.id}
+                projectOwnerId={project.creatorId}
+                currentUserId={user.id}
+              />
+            )}
+
+            {activeTab === "incomes" && (
+              <IncomesPanel
+                projectId={project.id}
+                projectOwnerId={project.creatorId}
+                currentUserId={user.id}
+              />
+            )}
+
+            {activeTab === "budget" && <BudgetReportPanel projectId={project.id} />}
           </>
         )}
       </Stack>
