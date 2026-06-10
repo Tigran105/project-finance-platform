@@ -10,8 +10,8 @@ export type GraphQLContext = {
 };
 
 export async function createGraphQLContext({
-  req,
-}: ExpressContextFunctionArgument): Promise<GraphQLContext> {
+                                             req,
+                                           }: ExpressContextFunctionArgument): Promise<GraphQLContext> {
   const authHeader = req.headers.authorization;
 
   if (!authHeader?.startsWith("Bearer ")) {
