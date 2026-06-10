@@ -6,10 +6,10 @@ import { ApolloServerPluginDrainHttpServer } from "@apollo/server/plugin/drainHt
 import cors from "cors";
 import express from "express";
 
-import { env } from "./config/env";
+import { env } from "./config/env.js";
 import { createGraphQLContext } from "./graphql/context.js";
-import { resolvers } from "./graphql/resolvers";
-import { typeDefs } from "./graphql/typeDefs";
+import { resolvers } from "./graphql/resolvers.js";
+import { typeDefs } from "./graphql/typeDefs.js";
 
 async function bootstrap() {
   const app = express();

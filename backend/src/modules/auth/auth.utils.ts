@@ -1,5 +1,5 @@
 import bcrypt from "bcryptjs";
-import jwt from "jsonwebtoken";
+import jwt, { type SignOptions } from "jsonwebtoken";
 
 import { env } from "../../config/env.js";
 
@@ -16,9 +16,11 @@ export async function comparePassword(password: string, passwordHash: string) {
 }
 
 export function signAccessToken(payload: JwtPayload) {
-  return jwt.sign(payload, env.jwtSecret, {
-    expiresIn: env.jwtExpiresIn,
-  });
+  const options: SignOptions = {
+    expiresIn: env.jwtExpiresIn as SignOptions["expiresIn"],
+  };
+
+  return jwt.sign(payload, env.jwtSecret, options);
 }
 
 export function verifyAccessToken(token: string): JwtPayload {
