@@ -1,6 +1,7 @@
 import { prisma } from "../config/prisma.js";
 import { requireAuth } from "../common/auth/require-auth.js";
 import { authService } from "../modules/auth/auth.service.js";
+import { expenseService } from "../modules/expenses/expense.service.js";
 import { invitationService } from "../modules/invitations/invitation.service.js";
 import { projectService } from "../modules/projects/project.service.js";
 import type { GraphQLContext } from "./context.js";
@@ -34,6 +35,12 @@ export const resolvers = {
       const currentUser = requireAuth(context);
 
       return invitationService.listMyInvitations(currentUser.email);
+    },
+
+    expenses: (_parent: unknown, args: { projectId: string }, context: GraphQLContext) => {
+      const currentUser = requireAuth(context);
+
+      return expenseService.getExpenses(args.projectId, currentUser.id);
     },
   },
 
@@ -95,6 +102,32 @@ export const resolvers = {
       const currentUser = requireAuth(context);
 
       return invitationService.rejectInvitation(args.id, currentUser.email);
+    },
+
+    createExpense: (
+      _parent: unknown,
+      args: { input: { projectId: string; name: string; amount: number } },
+      context: GraphQLContext,
+    ) => {
+      const currentUser = requireAuth(context);
+
+      return expenseService.createExpense(args.input, currentUser.id);
+    },
+
+    updateExpense: (
+      _parent: unknown,
+      args: { id: string; input: { name?: string; amount?: number } },
+      context: GraphQLContext,
+    ) => {
+      const currentUser = requireAuth(context);
+
+      return expenseService.updateExpense(args.id, args.input, currentUser.id);
+    },
+
+    deleteExpense: (_parent: unknown, args: { id: string }, context: GraphQLContext) => {
+      const currentUser = requireAuth(context);
+
+      return expenseService.deleteExpense(args.id, currentUser.id);
     },
   },
 };
