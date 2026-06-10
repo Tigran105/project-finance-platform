@@ -6,10 +6,10 @@ import { ApolloServerPluginDrainHttpServer } from "@apollo/server/plugin/drainHt
 import cors from "cors";
 import express from "express";
 
-import { env } from "./config/env.js";
-import { prisma } from "./config/prisma.js";
-import { resolvers } from "./graphql/resolvers.js";
-import { typeDefs } from "./graphql/typeDefs.js";
+import { env } from "./config/env";
+import { createGraphQLContext } from "./graphql/context.js";
+import { resolvers } from "./graphql/resolvers";
+import { typeDefs } from "./graphql/typeDefs";
 
 async function bootstrap() {
   const app = express();
@@ -28,11 +28,7 @@ async function bootstrap() {
     cors<cors.CorsRequest>(),
     express.json(),
     expressMiddleware(apolloServer, {
-      context: async () => {
-        return {
-          prisma,
-        };
-      },
+      context: createGraphQLContext,
     }),
   );
 

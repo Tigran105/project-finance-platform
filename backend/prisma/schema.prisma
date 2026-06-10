@@ -6,3 +6,113 @@ datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
 }
+
+enum InvitationStatus {
+  PENDING
+  ACCEPTED
+  REJECTED
+}
+
+model User {
+  id           String   @id @default(cuid())
+  name         String
+  email        String   @unique
+  passwordHash String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  createdProjects Project[]       @relation("ProjectCreator")
+  memberships     ProjectMember[]
+  sentInvitations Invitation[]    @relation("InvitationSender")
+  expenses        Expense[]
+  incomes         Income[]
+
+  @@map("users")
+}
+
+model Project {
+  id        String   @id @default(cuid())
+  name      String
+  location  String
+  creatorId String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  creator     User            @relation("ProjectCreator", fields: [creatorId], references: [id], onDelete: Cascade)
+  members     ProjectMember[]
+  invitations Invitation[]
+  expenses    Expense[]
+  incomes     Income[]
+
+  @@index([creatorId])
+  @@map("projects")
+}
+
+model ProjectMember {
+  id        String   @id @default(cuid())
+  projectId String
+  userId    String
+  createdAt DateTime @default(now())
+
+  project Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([projectId, userId])
+  @@index([userId])
+  @@map("project_members")
+}
+
+model Invitation {
+  id          String           @id @default(cuid())
+  projectId   String
+  email       String
+  status      InvitationStatus @default(PENDING)
+  invitedById String
+  createdAt   DateTime         @default(now())
+  updatedAt   DateTime         @updatedAt
+
+  project   Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  invitedBy User    @relation("InvitationSender", fields: [invitedById], references: [id], onDelete: Cascade)
+
+  @@index([email])
+  @@index([projectId, email, status])
+  @@map("invitations")
+}
+
+model Expense {
+  id             String   @id @default(cuid())
+  projectId      String
+  creatorId      String
+  name           String
+  normalizedName String
+  amount         Decimal  @db.Decimal(10, 2)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  project Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  creator User    @relation(fields: [creatorId], references: [id], onDelete: Cascade)
+
+  @@index([projectId])
+  @@index([projectId, normalizedName])
+  @@index([creatorId])
+  @@map("expenses")
+}
+
+model Income {
+  id             String   @id @default(cuid())
+  projectId      String
+  creatorId      String
+  name           String
+  normalizedName String
+  amount         Decimal  @db.Decimal(10, 2)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  project Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  creator User    @relation(fields: [creatorId], references: [id], onDelete: Cascade)
+
+  @@index([projectId])
+  @@index([projectId, normalizedName])
+  @@index([creatorId])
+  @@map("incomes")
+}
