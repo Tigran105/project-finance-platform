@@ -4,7 +4,8 @@ import { AuthProvider } from "@/auth/AuthContext";
 import { GuestRoute } from "@/auth/GuestRoute";
 import { ProtectedRoute } from "@/auth/ProtectedRoute";
 import { LoginPage } from "@/pages/LoginPage";
-import { ProjectsPlaceholderPage } from "@/pages/ProjectsPlaceholderPage";
+import { ProjectDetailPage } from "@/pages/ProjectDetailPage";
+import { ProjectsPage } from "@/pages/ProjectsPage";
 import { RegisterPage } from "@/pages/RegisterPage";
 
 function App() {
@@ -19,7 +20,8 @@ function App() {
         </Route>
 
         <Route element={<ProtectedRoute />}>
-          <Route path="/projects" element={<ProjectsPlaceholderPage />} />
+          <Route path="/projects" element={<ProjectsPage />} />
+          <Route path="/projects/:projectId" element={<ProjectDetailPage />} />
         </Route>
 
         <Route path="*" element={<Navigate to="/projects" replace />} />

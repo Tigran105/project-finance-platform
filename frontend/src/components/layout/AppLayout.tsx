@@ -1,20 +1,26 @@
+import AccountBalanceWalletOutlinedIcon from "@mui/icons-material/AccountBalanceWalletOutlined";
 import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Container from "@mui/material/Container";
-import Paper from "@mui/material/Paper";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import { useNavigate } from "react-router-dom";
+import type { ReactNode } from "react";
+import { Link as RouterLink, useNavigate } from "react-router-dom";
 
 import { useAuth } from "@/auth/AuthContext";
 
-export function ProjectsPlaceholderPage() {
+type AppLayoutProps = {
+  children: ReactNode;
+  maxWidth?: "sm" | "md" | "lg" | "xl";
+};
+
+export function AppLayout({ children, maxWidth = "lg" }: AppLayoutProps) {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
 
-  const handleLogout = async () => {
+  const handleLogout = () => {
     logout();
     navigate("/login", { replace: true });
   };
@@ -23,10 +29,20 @@ export function ProjectsPlaceholderPage() {
     <Box sx={{ minHeight: "100vh", bgcolor: "background.default" }}>
       <AppBar position="static" elevation={0}>
         <Toolbar>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+          <AccountBalanceWalletOutlinedIcon sx={{ mr: 1 }} />
+          <Typography
+            variant="h6"
+            component={RouterLink}
+            to="/projects"
+            sx={{
+              flexGrow: 1,
+              color: "inherit",
+              textDecoration: "none",
+            }}
+          >
             Project Finance Platform
           </Typography>
-          <Typography variant="body2" sx={{ mr: 2 }}>
+          <Typography variant="body2" sx={{ mr: 2, display: { xs: "none", sm: "block" } }}>
             {user?.name}
           </Typography>
           <Button color="inherit" startIcon={<LogoutOutlinedIcon />} onClick={handleLogout}>
@@ -35,15 +51,8 @@ export function ProjectsPlaceholderPage() {
         </Toolbar>
       </AppBar>
 
-      <Container maxWidth="md" sx={{ py: 6 }}>
-        <Paper sx={{ p: 4, textAlign: "center" }}>
-          <Typography variant="h5" gutterBottom>
-            You are signed in
-          </Typography>
-          <Typography color="text.secondary">
-            Project dashboard and management views will be added in the next step.
-          </Typography>
-        </Paper>
+      <Container maxWidth={maxWidth} sx={{ py: 4 }}>
+        {children}
       </Container>
     </Box>
   );
