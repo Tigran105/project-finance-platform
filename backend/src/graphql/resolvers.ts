@@ -1,6 +1,7 @@
 import { prisma } from "../config/prisma.js";
 import { requireAuth } from "../common/auth/require-auth.js";
 import { authService } from "../modules/auth/auth.service.js";
+import { budgetReportService } from "../modules/budget-report/budget-report.service.js";
 import { expenseService } from "../modules/expenses/expense.service.js";
 import { incomeService } from "../modules/incomes/income.service.js";
 import { invitationService } from "../modules/invitations/invitation.service.js";
@@ -48,6 +49,12 @@ export const resolvers = {
       const currentUser = requireAuth(context);
 
       return incomeService.getIncomes(args.projectId, currentUser.id);
+    },
+
+    budgetReport: (_parent: unknown, args: { projectId: string }, context: GraphQLContext) => {
+      const currentUser = requireAuth(context);
+
+      return budgetReportService.getBudgetReport(args.projectId, currentUser.id);
     },
   },
 

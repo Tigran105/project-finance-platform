@@ -73,6 +73,21 @@ export const typeDefs = `#graphql
     updatedAt: String!
   }
 
+  type BudgetReportItem {
+    name: String!
+    totalIncome: Float!
+    totalExpense: Float!
+    difference: Float!
+  }
+
+  type BudgetReport {
+    projectId: ID!
+    totalIncome: Float!
+    totalExpense: Float!
+    difference: Float!
+    items: [BudgetReportItem!]!
+  }
+
   input RegisterInput {
     name: String!
     email: String!
@@ -130,6 +145,7 @@ export const typeDefs = `#graphql
     myInvitations: [Invitation!]!
     expenses(projectId: ID!): [Expense!]!
     incomes(projectId: ID!): [Income!]!
+    budgetReport(projectId: ID!): BudgetReport!
   }
 
   type Mutation {
