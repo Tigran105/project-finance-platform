@@ -61,6 +61,18 @@ export const typeDefs = `#graphql
     updatedAt: String!
   }
 
+  type Income {
+    id: ID!
+    projectId: ID!
+    creatorId: ID!
+    name: String!
+    normalizedName: String!
+    amount: Float!
+    creator: User!
+    createdAt: String!
+    updatedAt: String!
+  }
+
   input RegisterInput {
     name: String!
     email: String!
@@ -98,6 +110,17 @@ export const typeDefs = `#graphql
     amount: Float
   }
 
+  input CreateIncomeInput {
+    projectId: ID!
+    name: String!
+    amount: Float!
+  }
+
+  input UpdateIncomeInput {
+    name: String
+    amount: Float
+  }
+
   type Query {
     health: String!
     dbHealth: String!
@@ -106,6 +129,7 @@ export const typeDefs = `#graphql
     project(id: ID!): Project!
     myInvitations: [Invitation!]!
     expenses(projectId: ID!): [Expense!]!
+    incomes(projectId: ID!): [Income!]!
   }
 
   type Mutation {
@@ -123,5 +147,9 @@ export const typeDefs = `#graphql
     createExpense(input: CreateExpenseInput!): Expense!
     updateExpense(id: ID!, input: UpdateExpenseInput!): Expense!
     deleteExpense(id: ID!): Boolean!
+
+    createIncome(input: CreateIncomeInput!): Income!
+    updateIncome(id: ID!, input: UpdateIncomeInput!): Income!
+    deleteIncome(id: ID!): Boolean!
   }
 `;
