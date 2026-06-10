@@ -1,0 +1,17 @@
+{
+  "name": "project-finance-platform",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Project finance management platform",
+  "scripts": {
+    "dev": "concurrently -n backend,frontend -c blue,green \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "dev:backend": "npm run dev --prefix backend",
+    "dev:frontend": "npm run dev --prefix frontend",
+    "build:backend": "npm run build --prefix backend",
+    "build:frontend": "npm run build --prefix frontend",
+    "test:backend": "npm test --prefix backend"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  }
+}

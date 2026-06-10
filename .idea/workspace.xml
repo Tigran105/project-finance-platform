@@ -4,19 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1bfe435d-520d-4f35-95ed-81428df463cc" name="Changes" comment="feat(projects): add dashboard, team management, and invitations">
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/finance/BudgetReportPanel.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/finance/FinancePanels.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/finance/FinanceRecordDialog.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/finance/FinanceRecordsPanel.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/graphql/fragments/finance.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/graphql/mutations/finance.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/graphql/queries/finance.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/types/finance.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/utils/currency.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/validation/finance.ts" afterDir="false" />
+    <list default="true" id="1bfe435d-520d-4f35-95ed-81428df463cc" name="Changes" comment="feat(finance): add expense/income CRUD and budget reports">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/pages/ProjectDetailPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/ProjectDetailPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -116,7 +106,7 @@
       <option name="presentableId" value="Default" />
       <updated>1781109331438</updated>
       <workItem from="1781109332563" duration="1094000" />
-      <workItem from="1781110967309" duration="2075000" />
+      <workItem from="1781110967309" duration="8654000" />
     </task>
     <task id="LOCAL-00006" summary="feat(auth): implement JWT-based login and registration">
       <option name="closed" value="true" />
@@ -134,7 +124,15 @@
       <option name="project" value="LOCAL" />
       <updated>1781112189190</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="feat(finance): add expense/income CRUD and budget reports">
+      <option name="closed" value="true" />
+      <created>1781113159381</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1781113159381</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -148,7 +146,8 @@
     <MESSAGE value="test(backend) add required feature coverage" />
     <MESSAGE value="feat(auth): implement JWT-based login and registration" />
     <MESSAGE value="feat(projects): add dashboard, team management, and invitations" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat(projects): add dashboard, team management, and invitations" />
+    <MESSAGE value="feat(finance): add expense/income CRUD and budget reports" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat(finance): add expense/income CRUD and budget reports" />
   </component>
   <component name="github-copilot-workspace">
     <instructionFileLocations>
