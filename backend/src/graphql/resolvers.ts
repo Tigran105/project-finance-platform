@@ -1,6 +1,7 @@
 import { prisma } from "../config/prisma.js";
 import { requireAuth } from "../common/auth/require-auth.js";
 import { authService } from "../modules/auth/auth.service.js";
+import { invitationService } from "../modules/invitations/invitation.service.js";
 import { projectService } from "../modules/projects/project.service.js";
 import type { GraphQLContext } from "./context.js";
 
@@ -27,6 +28,12 @@ export const resolvers = {
       const currentUser = requireAuth(context);
 
       return projectService.getProject(args.id, currentUser.id);
+    },
+
+    myInvitations: (_parent: unknown, _args: unknown, context: GraphQLContext) => {
+      const currentUser = requireAuth(context);
+
+      return invitationService.listMyInvitations(currentUser.email);
     },
   },
 
@@ -66,6 +73,28 @@ export const resolvers = {
       const currentUser = requireAuth(context);
 
       return projectService.deleteProject(args.id, currentUser.id);
+    },
+
+    inviteUser: (
+      _parent: unknown,
+      args: { input: { projectId: string; email: string } },
+      context: GraphQLContext,
+    ) => {
+      const currentUser = requireAuth(context);
+
+      return invitationService.inviteUser(args.input, currentUser.id);
+    },
+
+    acceptInvitation: (_parent: unknown, args: { id: string }, context: GraphQLContext) => {
+      const currentUser = requireAuth(context);
+
+      return invitationService.acceptInvitation(args.id, currentUser.id, currentUser.email);
+    },
+
+    rejectInvitation: (_parent: unknown, args: { id: string }, context: GraphQLContext) => {
+      const currentUser = requireAuth(context);
+
+      return invitationService.rejectInvitation(args.id, currentUser.email);
     },
   },
 };

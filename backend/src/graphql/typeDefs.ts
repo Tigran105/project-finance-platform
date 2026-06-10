@@ -1,4 +1,10 @@
 export const typeDefs = `#graphql
+  enum InvitationStatus {
+    PENDING
+    ACCEPTED
+    REJECTED
+  }
+
   type User {
     id: ID!
     name: String!
@@ -31,6 +37,18 @@ export const typeDefs = `#graphql
     updatedAt: String!
   }
 
+  type Invitation {
+    id: ID!
+    projectId: ID!
+    email: String!
+    status: InvitationStatus!
+    invitedById: ID!
+    project: Project!
+    invitedBy: User!
+    createdAt: String!
+    updatedAt: String!
+  }
+
   input RegisterInput {
     name: String!
     email: String!
@@ -52,12 +70,18 @@ export const typeDefs = `#graphql
     location: String
   }
 
+  input InviteUserInput {
+    projectId: ID!
+    email: String!
+  }
+
   type Query {
     health: String!
     dbHealth: String!
     me: User
     projects: [Project!]!
     project(id: ID!): Project!
+    myInvitations: [Invitation!]!
   }
 
   type Mutation {
@@ -67,5 +91,9 @@ export const typeDefs = `#graphql
     createProject(input: CreateProjectInput!): Project!
     updateProject(id: ID!, input: UpdateProjectInput!): Project!
     deleteProject(id: ID!): Boolean!
+
+    inviteUser(input: InviteUserInput!): Invitation!
+    acceptInvitation(id: ID!): Invitation!
+    rejectInvitation(id: ID!): Invitation!
   }
 `;
