@@ -32,4 +32,25 @@ describe("financeRecordSchema", () => {
       }),
     ).rejects.toThrow("Name is required");
   });
+
+  it("accepts the maximum allowed amount", async () => {
+    await expect(
+      financeRecordSchema.validate({
+        name: "Concrete",
+        amount: 99999999.99,
+      }),
+    ).resolves.toEqual({
+      name: "Concrete",
+      amount: 99999999.99,
+    });
+  });
+
+  it("rejects amounts above the maximum", async () => {
+    await expect(
+      financeRecordSchema.validate({
+        name: "Concrete",
+        amount: 100000000,
+      }),
+    ).rejects.toThrow("Amount must be less than or equal to 99,999,999.99");
+  });
 });
