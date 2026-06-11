@@ -23,3 +23,8 @@ export type CreateProjectInput = {
   name: string;
   location: string;
 };
+
+export type UpdateProjectInput = {
+  name?: string;
+  location?: string;
+};

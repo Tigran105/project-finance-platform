@@ -24,4 +24,5 @@ export const inviteUserSchema = yup.object({
 });
 
 export type CreateProjectFormValues = yup.InferType<typeof createProjectSchema>;
+export type UpdateProjectFormValues = CreateProjectFormValues;
 export type InviteUserFormValues = yup.InferType<typeof inviteUserSchema>;

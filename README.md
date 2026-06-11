@@ -18,6 +18,8 @@ Full-stack platform for managing project finances: authentication, project teams
 
 ### 1. Backend
 
+See [backend/README.md](backend/README.md) for detailed API and testing documentation.
+
 ```bash
 cd backend
 cp .env.example .env
