@@ -10,6 +10,7 @@
     "start": "node dist/server.js",
     "test": "cross-env NODE_ENV=test npm run test:prepare && cross-env NODE_ENV=test node --experimental-vm-modules ./node_modules/jest/bin/jest.js --runInBand",
     "test:prepare": "node scripts/prepare-test-db.mjs",
+    "test:migrate": "node scripts/prepare-test-db.mjs",
     "prisma:generate": "prisma generate",
     "prisma:migrate": "prisma migrate dev",
     "prisma:studio": "prisma studio"
