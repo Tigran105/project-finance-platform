@@ -5,8 +5,28 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1bfe435d-520d-4f35-95ed-81428df463cc" name="Changes" comment="feat(finance): add expense/income CRUD and budget reports">
+      <change afterPath="$PROJECT_DIR$/frontend/src/auth/ProtectedRoute.test.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/auth/token.test.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/finance/BudgetReportPanel.test.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/pages/LoginPage.test.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/pages/RegisterPage.test.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/test/fixtures/auth.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/test/fixtures/finance.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/test/renderWithProviders.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/test/setup.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/utils/currency.test.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/utils/graphql-error.test.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/validation/auth.test.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/validation/finance.test.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/validation/project.test.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/tsconfig.app.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/tsconfig.app.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/vite.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/vite.config.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,7 +61,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "feature/frontend",
-    "last_opened_file_path": "C:/Users/tiksa/project-finance-platform",
+    "last_opened_file_path": "C:/Users/tiksa/project-finance-platform/frontend",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
@@ -50,6 +70,11 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\tiksa\project-finance-platform\frontend" />
+    </key>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -107,6 +132,7 @@
       <updated>1781109331438</updated>
       <workItem from="1781109332563" duration="1094000" />
       <workItem from="1781110967309" duration="8654000" />
+      <workItem from="1781172757805" duration="5081000" />
     </task>
     <task id="LOCAL-00006" summary="feat(auth): implement JWT-based login and registration">
       <option name="closed" value="true" />

@@ -22,3 +22,12 @@ VITE_GRAPHQL_URL=http://localhost:4000/graphql
 ```
 
 During local development, Vite also proxies `/graphql` to the backend.
+
+## Tests
+
+```bash
+npm test           # run once
+npm run test:watch # watch mode
+```
+
+Tests use Vitest with React Testing Library and jsdom.

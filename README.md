@@ -69,6 +69,7 @@ npm run dev
 | `npm run dev:backend` | root | Start backend only |
 | `npm run dev:frontend` | root | Start frontend only |
 | `npm test` | backend | Run backend tests |
+| `npm run test:frontend` | root | Run frontend tests |
 | `npm run build` | frontend | Production build |
 
 ## Project structure
