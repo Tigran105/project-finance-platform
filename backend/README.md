@@ -37,9 +37,11 @@ Edit `.env` with your values:
 
 ```env
 PORT=4000
-DATABASE_URL="mysql://root:password@localhost:3306/project_finance_db"
+DATABASE_URL="mysql://root:YOUR_PASSWORD@localhost:3306/project_finance_db"
 JWT_SECRET="your_jwt_secret"
 JWT_EXPIRES_IN="1d"
+CLIENT_ORIGIN="http://localhost:5173"
+NODE_ENV="development"
 ```
 
 Create the development database:
@@ -86,8 +88,28 @@ npm run dev
 | `DATABASE_URL` | Yes | MySQL connection string |
 | `JWT_SECRET` | Yes | Secret for signing access tokens |
 | `JWT_EXPIRES_IN` | No | Token lifetime (default: `1d`) |
+| `CLIENT_ORIGIN` | No | Allowed frontend origin for CORS (default: `http://localhost:5173`) |
+| `NODE_ENV` | No | Runtime environment (`development`, `production`, or `test`) |
 
 When `NODE_ENV=test`, the app loads `.env.test` instead of `.env`. See [Testing](#testing) below.
+
+In production, `JWT_SECRET` must not use placeholder values such as `your_jwt_secret` or `change_this_secret_later`.
+
+## Security
+
+Basic API hardening included in this project:
+
+- **Helmet** — sets secure HTTP headers globally
+- **Explicit CORS** — only allows requests from `CLIENT_ORIGIN` with credentials
+- **Apollo production mode** — disables GraphQL introspection and the landing page when `NODE_ENV=production`
+- **Error sanitization** — unexpected errors return a generic message in production; `AppError` messages are preserved
+- **JWT secret validation** — rejects weak placeholder secrets in production
+
+Possible future improvements (outside current assignment scope):
+
+- Rate limiting
+- Refresh tokens
+- Advanced GraphQL query complexity / depth limits
 
 ## Project structure
 
@@ -211,6 +233,8 @@ PORT=4000
 DATABASE_URL="mysql://root:password@localhost:3306/project_finance_test_db"
 JWT_SECRET="test_jwt_secret"
 JWT_EXPIRES_IN="1d"
+CLIENT_ORIGIN="http://localhost:5173"
+NODE_ENV="test"
 ```
 
 The `DATABASE_URL` **must contain `test`** — tests abort otherwise as a safety guard.
