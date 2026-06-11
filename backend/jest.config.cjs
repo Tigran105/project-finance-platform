@@ -3,6 +3,7 @@ module.exports = {
   testEnvironment: "node",
   testMatch: ["**/src/**/*.test.ts"],
   extensionsToTreatAsEsm: [".ts"],
+  setupFiles: ["<rootDir>/src/tests/setup-env.ts"],
   moduleNameMapper: {
     "^(\\.{1,2}/.*)\\.js$": "$1",
   },

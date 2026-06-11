@@ -11,6 +11,15 @@ type InviteUserInput = {
   email: string;
 };
 
+const projectWithRelationsInclude = {
+  creator: true,
+  members: {
+    include: {
+      user: true,
+    },
+  },
+} as const;
+
 export const invitationService = {
   async inviteUser(input: InviteUserInput, ownerId: string) {
     const { error, value } = inviteUserSchema.validate(input);
@@ -74,7 +83,9 @@ export const invitationService = {
         status: InvitationStatus.PENDING,
       },
       include: {
-        project: true,
+        project: {
+          include: projectWithRelationsInclude,
+        },
         invitedBy: true,
       },
     });
@@ -92,14 +103,7 @@ export const invitationService = {
       },
       include: {
         project: {
-          include: {
-            creator: true,
-            members: {
-              include: {
-                user: true,
-              },
-            },
-          },
+          include: projectWithRelationsInclude,
         },
         invitedBy: true,
       },
@@ -155,14 +159,7 @@ export const invitationService = {
         },
         include: {
           project: {
-            include: {
-              creator: true,
-              members: {
-                include: {
-                  user: true,
-                },
-              },
-            },
+            include: projectWithRelationsInclude,
           },
           invitedBy: true,
         },
@@ -201,14 +198,7 @@ export const invitationService = {
         },
         include: {
           project: {
-            include: {
-              creator: true,
-              members: {
-                include: {
-                  user: true,
-                },
-              },
-            },
+            include: projectWithRelationsInclude,
           },
           invitedBy: true,
         },

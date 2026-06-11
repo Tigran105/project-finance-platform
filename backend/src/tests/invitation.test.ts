@@ -11,6 +11,24 @@ describe("Invitations", () => {
     await prisma.$disconnect();
   });
 
+  it("returns project relations when inviting a user", async () => {
+    const owner = await createTestUser("owner.relations@example.com", "Owner");
+    const invited = await createTestUser("member.relations@example.com", "Member");
+    const project = await createTestProject(owner.user.id);
+
+    const invitation = await invitationService.inviteUser(
+      {
+        projectId: project!.id,
+        email: invited.user.email,
+      },
+      owner.user.id,
+    );
+
+    expect(invitation.project.creator.id).toBe(owner.user.id);
+    expect(invitation.project.members.length).toBeGreaterThan(0);
+    expect(invitation.invitedBy.id).toBe(owner.user.id);
+  });
+
   it("accepts an invitation and grants project access", async () => {
     const owner = await createTestUser("owner.invite@example.com", "Owner");
     const invited = await createTestUser("member.invite@example.com", "Member");

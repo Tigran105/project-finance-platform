@@ -1,6 +1,4 @@
-import dotenv from "dotenv";
-
-dotenv.config();
+import "./load-env.js";
 
 const requiredEnvVars = ["DATABASE_URL", "JWT_SECRET"] as const;
 
